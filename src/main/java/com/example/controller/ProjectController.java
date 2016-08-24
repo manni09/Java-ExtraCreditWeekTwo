@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,23 +24,23 @@ public class ProjectController {
         return "admin";
     }
 	
+	@RequestMapping(value = "/projects", method = RequestMethod.GET)
+    public String getAllProjects(Model model){
+		List<Project> projectList = volunteerService.getAll();
+        model.addAttribute("projectList", projectList);
+        return "projects";
+    }
+	
 	@RequestMapping(value = "/project/add", method = RequestMethod.GET)
 	public String addProject(Model model){
 		
-		return "projectList";
+		return "addproject";
 	}
 	
 	@RequestMapping(value = "/project/add", method = RequestMethod.POST)
     public String addProjectFormProcess(Project project){
         
         return "redirect:/projects";
-    }
-	
-    @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String getAllProjects(Model model){
-        
-        
-        return "projects";
     }
     
 }
