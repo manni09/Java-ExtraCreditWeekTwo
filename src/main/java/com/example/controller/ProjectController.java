@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.example.domain.Project;
 import com.example.domain.Status;
 import com.example.service.IVolunteerService;
 import com.mysql.fabric.xmlrpc.base.Data;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -38,13 +40,14 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/project/add", method = RequestMethod.GET)
 	public String addProject(Model model){
-		
+		Status[] status = Status.values();
+		model.addAttribute("status", status);
 		return "addproject";
 	}
 	
 	@RequestMapping(value = "/project/add", method = RequestMethod.POST)
     public String addProjectFormProcess(Project project){
-        
+        // Un-implimeneted 
         return "redirect:/projects";
     }
     
