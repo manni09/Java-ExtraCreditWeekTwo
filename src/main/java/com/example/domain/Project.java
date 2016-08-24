@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Project implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Address address;
 	
 	@OneToMany(mappedBy = "project")
